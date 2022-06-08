@@ -2,6 +2,8 @@ from kivymd.app import MDApp
 from ui.base import MainWidget
 from api.storage import Storage
 from kivy.lang import Builder
+from kivy.utils import platform
+#from jnius import autoclass
 import os
 import weakref
 
@@ -22,6 +24,16 @@ class MainApp(MDApp):
         #Builder.unload_file("kv/Debug.kv")
 
     def build(self):
+        if platform == 'android':
+            from android import AndroidService # it will crash on other platforms otherwise
+            service = AndroidService('my pong service', 'running')
+            service.start('service started')
+            self.service = service
+            #service = autoclass('com.enaix.theme.ServiceMain')#AndroidService('my pong service', 'running')
+            #mActivity = autoclass('com.kivy.android.PythonActivity').mActivity
+            #service.start(mActivity, 'Launch')
+            #self.service = service
+        
         return self.main_wid
 
 
