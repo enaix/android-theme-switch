@@ -1,0 +1,44 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<ImageCard>
+	padding: [0, 0, 0, 10]
+	size_hint: 0.3, 0.5
+	pos_hint: {"top": 1}
+	#size: "200dp", "100dp"
+	
+	radius: [32]
+	border_radius: 40
+	style: "filled"
+	elevation: 0
+	md_bg_color: get_color_from_hex("#f6eeee")
+
+	MDBoxLayout:
+		orientation: "vertical"
+		size_hint: 1, 1
+		#size: "150dp", "200dp"
+		#padding: [0, 10, 0, 10]
+		spacing: 10
+		#spacing: [0, 0, 0, 10]
+
+		FitImage:
+			size_hint: 1, 1
+			#height: "150dp"
+			#pos_hint: {"top": 1}
+			#pos: 0, 0
+			pos_hint: {'x': 0, 'y': 0}
+			anchor_x: 'center'
+			anchor_y: 'top'
+			source: root.image
+			radius: [32]
+			allow_stretch: False
+		
+		MDLabel:
+			#size: "100dp", "100dp"
+			pos_hint: {'x': 0.05, 'y': 0, 'bottom': 1}
+			#pos_hint: {'bottom': 0.95, 'left': 0.1}
+			#id: album_text
+			text: root.text
+			theme_text_color: 'Primary'
+			font_style: 'Body1'
+			color: .2, .2, .2, .8
+			adaptive_size: True

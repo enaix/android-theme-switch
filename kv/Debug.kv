@@ -1,0 +1,28 @@
+#:import debug_color_bg ui.internal.debug_tools.debug_color_bg
+
+<Widget+ThemeBeahvior+HoverBehavior>:
+	canvas.after:
+		Color:
+			rgba: 0,0,0,0
+		Line:
+			rectangle: self.x+1,self.y+1,self.width-1,self.height-1
+			dash_offset: 5
+			dash_length: 3
+		Color:
+			rgba: 0.7,0.8,1,0
+		Rectangle:
+			pos: self.x+1,self.y+1
+			size: self.width-1,self.height-1
+
+	on_enter: debug_color_bg(self, (0.7,0.8,1), 0.2)
+	on_leave: debug_color_bg(self, (0.7,0.8,1), 0)
+
+
+<Layout>:
+	canvas.after:
+		Color:
+			rgba: 0.2,0.3,1,0
+		Line:
+			rectangle: self.x+1,self.y+1,self.width-1,self.height-1
+			Color:
+				rgba: 0,0,0,0
