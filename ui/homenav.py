@@ -25,7 +25,7 @@ class HomeNav(MDBottomNavigationItem):
         self.color_children(app.main_wid.children, int(not self.debug_enabled))
         self.debug_enabled = not self.debug_enabled
 
-    def set_theme(self):
+    def set_theme(self, btn):
         db = App.get_running_app().db
         db.load_file()
         home_path = db.load_theme(self.theme, 0)
@@ -35,7 +35,17 @@ class HomeNav(MDBottomNavigationItem):
             toast("There is nothing to do")
             return
 
-        set_wallpaper(home_path, lock_path)
+        btn.text = "..."
+
+        self.btn = btn
+        self.home_path = home_path
+        self.lock_path = lock_path
+
+        Clock.schedule_once(self.set_wp)
+        
+    def set_wp(self, *args, **kwargs):
+        set_wallpaper(self.home_path, self.lock_path)
+        self.btn.text = "APPLY"
 
     def color_children(self, elems, opacity):
         if len(elems) == 0:
