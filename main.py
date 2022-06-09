@@ -17,8 +17,10 @@ def load_kv_files():
 class MainApp(MDApp):
     def __init__(self):
         super().__init__()
+
         self.theme_cls.material_style = "M3"
-        self.db = Storage()
+        self.abspath = os.path.dirname(os.path.abspath(__file__))
+        self.db = Storage(self.abspath)
 
         self.main_wid = MainWidget()
         #Builder.unload_file("kv/Debug.kv")
@@ -26,8 +28,8 @@ class MainApp(MDApp):
     def build(self):
         if platform == 'android':
             from android import AndroidService # it will crash on other platforms otherwise
-            service = AndroidService('my pong service', 'running')
-            service.start('service started')
+            service = AndroidService('Main service', 'running')
+            service.start('Main service started')
             self.service = service
             #service = autoclass('com.enaix.theme.ServiceMain')#AndroidService('my pong service', 'running')
             #mActivity = autoclass('com.kivy.android.PythonActivity').mActivity

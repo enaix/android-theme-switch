@@ -4,6 +4,7 @@ from kivy.properties import StringProperty
 from kivymd.toast import toast
 from plyer import filechooser
 from kivy.app import App
+from kivy.clock import Clock
 
 
 class ImageCard(MDCard, RoundedRectangularElevationBehavior):
@@ -27,7 +28,14 @@ class ImageCard(MDCard, RoundedRectangularElevationBehavior):
         if len(paths) == 0 or str(paths[0]) == "[]":
             toast("Could not fetch filepicker app or the file is not an image. Please check app permissions")
         else:
-            self.image = str(paths[0])
-            App.get_running_app().db.save_theme(self.theme, self.ptype, paths[0])
-        
-            #toast(str(paths[0]))
+            self.image_path = str(paths[0])
+            Clock.schedule_once(self.save_path)
+
+    def save_path(self, *args, **kwargs):
+        self.image = self.image_path
+
+        db = App.get_running_app().db
+        db.save_theme(self.theme, self.ptype, self.image)
+        db.save_file()
+
+

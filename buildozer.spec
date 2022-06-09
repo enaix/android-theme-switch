@@ -13,7 +13,7 @@ package.domain = com.enaix
 source.dir = .
 
 # (list) Source files to include (let empty to include all the files)
-#source.include_exts = py,png,jpg,kv,atlas
+source.include_exts = py,png,jpg,kv,atlas
 
 # (list) List of inclusions using pattern matching
 #source.include_patterns = assets/*,images/*.png
@@ -27,6 +27,7 @@ source.dir = .
 # (list) List of exclusions using pattern matching
 # Do not prefix with './'
 #source.exclude_patterns = license,images/*/*.jpg
+source.exclude_patterns = *theme.json*
 
 # (str) Application versioning (method 1)
 version = 0.1
@@ -46,6 +47,7 @@ requirements = python3,kivy,kivymd,Kivy-Garden,docutils,pygments,pillow,plyer,py
 
 # (str) Presplash of the application
 #presplash.filename = %(source.dir)s/data/presplash.png
+presplash.filename = %(source.dir)s/img/bg.png
 
 # (str) Icon of the application
 #icon.filename = %(source.dir)s/data/icon.png
@@ -94,7 +96,7 @@ android.presplash_color = #FFFFFF
 #icon.adaptive_background.filename = %(source.dir)s/data/icon_bg.png
 
 # (list) Permissions
-android.permissions = READ_EXTERNAL_STORAGE,SET_WALLPAPER
+android.permissions = READ_EXTERNAL_STORAGE,WRITE_EXTERNAL_STORAGE,SET_WALLPAPER
 
 # (list) features (adds uses-feature -tags to manifest)
 #android.features = android.hardware.usb.host
@@ -115,7 +117,7 @@ android.minapi = 24
 android.ndk_api = 24
 
 # (bool) Use --private data storage (True) or --dir public storage (False)
-#android.private_storage = True
+android.private_storage = True
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
 #android.ndk_path =

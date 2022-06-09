@@ -11,6 +11,8 @@ class MainWidget(MDBottomNavigation):
         super().__init__()
         #self.homescreen = Screen(name='Home')
         db = App.get_running_app().db
+        
+        db.load_file()
         images1 = [db.load_theme(0, 0), db.load_theme(0, 1)]
         images2 = [db.load_theme(1, 0), db.load_theme(1, 1)]
 

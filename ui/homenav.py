@@ -27,6 +27,7 @@ class HomeNav(MDBottomNavigationItem):
 
     def set_theme(self):
         db = App.get_running_app().db
+        db.load_file()
         home_path = db.load_theme(self.theme, 0)
         lock_path = db.load_theme(self.theme, 1)
 
