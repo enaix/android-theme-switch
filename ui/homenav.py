@@ -44,7 +44,12 @@ class HomeNav(MDBottomNavigationItem):
         Clock.schedule_once(self.set_wp)
         
     def set_wp(self, *args, **kwargs):
-        set_wallpaper(self.home_path, self.lock_path)
+        if not self.home_path == "":
+            set_wallpaper(self.home_path, True)
+        
+        if not self.lock_path == "":
+            set_wallpaper(self.lock_path, False)
+        
         self.btn.text = "APPLY"
 
     def color_children(self, elems, opacity):

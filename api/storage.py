@@ -57,5 +57,5 @@ class Storage:
         if path is not None:
             if os.path.exists(path):
                 return path
-            return ""
+            return path # Workaround
         return ""
